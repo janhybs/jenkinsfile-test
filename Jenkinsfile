@@ -14,6 +14,7 @@ pipeline {
                 echo 'Testing...'
                 sh 'pwd'
                 sh 'whoami'
+                sh 'echo aaa'
             }
         }
     }
