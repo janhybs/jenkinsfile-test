@@ -2,7 +2,7 @@
 
 def libs = [
     'mpich': 'flow123d/base-env',
-    'yamlcpp': 'flow123d/base-build'
+    // 'yamlcpp': 'flow123d/base-build'
 ]
 
 // Required due to JENKINS-27421
@@ -23,9 +23,8 @@ pipeline {
               dir('cmakefiles') {
                   script {
                       for (lib in mapToList(libs)) {
-                            echo "Building library '${lib[0]}'"
-                            sh "echo ${lib[0]}"
-                            sh "echo ${lib[1]}"
+                            echo "Building library '${lib[0]}' using image '${lib[1]}'"
+                            sh "make IMAGE=${lib[1]} ${lib[0]}"
                         }
                     }
                 }
