@@ -2,7 +2,7 @@
 
 def libs = {
     'mpich': 'flow123d/base-env',
-    'yamlcpp', 'flow123d/base-build'
+    'yamlcpp': 'flow123d/base-build'
 }
 
 // Required due to JENKINS-27421
