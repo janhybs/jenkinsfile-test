@@ -1,22 +1,22 @@
+def libs = [
+    'mpich',
+    'yamlcpp'
+]
+
 pipeline {
     agent { node { label 'ci2runner' } }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-                sh 'whoami'
-                sh 'pwd'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+              script {
+                  libs.each { lib ->
+                        dir("${lib}") {
+                            echo "Building library '${lib}'"
+                            sh 'make help'
+                        }
+                    }
+                }
             }
         }
     }
