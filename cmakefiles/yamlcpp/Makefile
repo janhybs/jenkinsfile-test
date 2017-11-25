@@ -6,7 +6,7 @@ package_name	= $(library)-$(version)
 
 build_type		= Debug
 build_dir 		= $(CURDIR)/build
-package_dir		= $(CURDIR)/packages
+package_dir		= $(CURDIR)/packages/$(library)_$(version)_$(build_type)
 cmake					= cmake
 clear					= false
 

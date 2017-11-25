@@ -1,9 +1,17 @@
 // git url: 'https://github.com/janhybs/jenkinsfile-test.git
 
-def libs = [
-    'mpich',
-    'yamlcpp'
-]
+def libs = {
+    'mpich': 'flow123d/base-env',
+    'yamlcpp', 'flow123d/base-build'
+}
+
+// Required due to JENKINS-27421
+@NonCPS
+List<List<?>> mapToList(Map map) {
+  return map.collect { it ->
+    [it.key, it.value]
+  }
+}
 
 pipeline {
     agent { node { label 'ci2runner' } }
@@ -11,18 +19,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              sh 'pwd'
-              sh 'ls -la'
 
               dir('cmakefiles') {
                   script {
-                      libs.each { lib ->
-                            dir("${lib}") {
-                                echo "Building library '${lib}'"
-                                sh 'pwd'
-                                sh 'ls -la'
-                                sh 'make help'
-                            }
+                      for (lib in mapToList(libs)) {
+                            echo "Building library '${lib[0]}'"
+                            sh "echo ${lib[0]}"
+                            sh "echo ${lib[1]}"
                         }
                     }
                 }
