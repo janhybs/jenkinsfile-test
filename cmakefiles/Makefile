@@ -19,4 +19,4 @@ $(LIBS):
 
 	docker exec $(DID) make -C /tmp/work/$(@) build_type=$(BUILD_TYPE) package
 	docker rm -f $(DID)
-	scp -r $(CURDIR)/$(@)/packages/* root@ciflow.nti.tul.cz:$(PACKAGE_DIR_REMOTE)/
+	scp -r $(CURDIR)/$(@)/packages/* builder@ciflow.nti.tul.cz:$(PACKAGE_DIR_REMOTE)/
