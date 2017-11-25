@@ -19,6 +19,8 @@ pipeline {
                       libs.each { lib ->
                             dir("${lib}") {
                                 echo "Building library '${lib}'"
+                                sh 'pwd'
+                                sh 'ls -la'
                                 sh 'make help'
                             }
                         }
