@@ -1,3 +1,5 @@
+// git url: 'https://github.com/janhybs/jenkinsfile-test.git
+
 def libs = [
     'mpich',
     'yamlcpp'
@@ -9,6 +11,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+              sh 'pwd'
+              sh 'ls -la'
+              
               script {
                   libs.each { lib ->
                         dir("${lib}") {
