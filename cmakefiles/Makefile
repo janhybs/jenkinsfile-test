@@ -17,6 +17,7 @@ $(LIBS):
 			--volume=$(CURDIR):/tmp/work \
 			$(IMAGE)
 
-	docker exec $(DID) make -C /tmp/work/$(@) build_type=$(BUILD_TYPE) package
+	-docker exec $(DID) make -C /tmp/work/$(@) build_type=$(BUILD_TYPE) package
+	-docker exec $(DID) chmod -R g+w /tmp/work
 	docker rm -f $(DID)
 	scp -r $(CURDIR)/$(@)/packages/* builder@ciflow.nti.tul.cz:$(PACKAGE_DIR_REMOTE)/
