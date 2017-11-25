@@ -13,12 +13,14 @@ pipeline {
             steps {
               sh 'pwd'
               sh 'ls -la'
-              
-              script {
-                  libs.each { lib ->
-                        dir("${lib}") {
-                            echo "Building library '${lib}'"
-                            sh 'make help'
+
+              dir('cmakefiles') {
+                  script {
+                      libs.each { lib ->
+                            dir("${lib}") {
+                                echo "Building library '${lib}'"
+                                sh 'make help'
+                            }
                         }
                     }
                 }
