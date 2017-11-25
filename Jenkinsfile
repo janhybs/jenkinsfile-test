@@ -1,9 +1,9 @@
 // git url: 'https://github.com/janhybs/jenkinsfile-test.git
 
-def libs = {
+def libs = [
     'mpich': 'flow123d/base-env',
     'yamlcpp': 'flow123d/base-build'
-}
+]
 
 // Required due to JENKINS-27421
 @NonCPS
