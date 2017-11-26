@@ -52,7 +52,7 @@ bddcml:
 	-docker exec $(DID) dpkg -i /tmp/mpich-3.2.0.deb
 	-docker exec $(DID) rm -rf /tmp/mpich-3.2.0.deb
 
-	-docker exec $(DID) wget -qO /tmp/petsc_3.6.1.deb http://ciflow.nti.tul.cz/static/packages/petsc_3.6.1_$(BUILD_TYPE)/petsc_3.6.1.deb
+	-docker exec $(DID) wget -qO /tmp/petsc_3.6.1.deb http://ciflow.nti.tul.cz/static/packages/petsc_3.6.1_$(BUILD_TYPE)/petsc-3.6.1.deb
 	-docker exec $(DID) dpkg -i /tmp/petsc_3.6.1.deb
 	-docker exec $(DID) rm -rf /tmp/petsc_3.6.1.deb
 

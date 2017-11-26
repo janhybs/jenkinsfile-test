@@ -8,7 +8,15 @@
 //     'bddcml': 'flow123d/base-env',
 // ]
 
-def libs = [
+def debug_libs = [
+    // 'mpich',
+    // 'petsc',
+    // 'yamlcpp',
+    // 'armadillo',
+    'bddcml',
+]
+
+def release_libs = [
     'mpich',
     'petsc',
     'yamlcpp',
@@ -32,7 +40,7 @@ pipeline {
             steps {
               dir('cmakefiles') {
                   script {
-                      for (lib in libs) {
+                      for (lib in debug_libs) {
                             sh "make IMAGE=flow123d/base-env BUILD_TYPE=Debug ${lib}"
                         }
                     }
@@ -44,7 +52,7 @@ pipeline {
             steps {
               dir('cmakefiles') {
                   script {
-                      for (lib in libs) {
+                      for (lib in release_libs) {
                             sh "make IMAGE=flow123d/base-env BUILD_TYPE=Release ${lib}"
                         }
                     }
