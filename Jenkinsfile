@@ -17,7 +17,7 @@ pipeline {
     agent { node { label 'ci2runner' } }
 
     stages {
-        stage('Build DEBUG libs') {
+        stage('Build DEBUG') {
             steps {
               dir('cmakefiles') {
                   script {
@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('Build RELEASE libs') {
+        stage('Build RELEASE') {
             steps {
               dir('cmakefiles') {
                   script {
