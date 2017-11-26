@@ -14,10 +14,10 @@ install_prefix = /usr/local
 prefix         = $(install_prefix)/$(package_name)
 
 # use petsc lapack and blas instead of system's
-USE_PETSC = Off
+USE_PETSC = On
 # use petsc lapack and blas instead of system's
-PETSC_DIR  =
-PETSC_ARCH =
+PETSC_DIR  = /usr/local/petsc-3.6.1/
+PETSC_ARCH = 
 
 
 .PHONY : configure
