@@ -19,12 +19,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-
               dir('cmakefiles') {
                   script {
                       for (lib in mapToList(libs)) {
-                            echo "Building library '${lib[0]}' using image '${lib[1]}'"
-                            sh "make IMAGE=${lib[1]} ${lib[0]}"
+                            echo "Building Debug library '${lib[0]}' using image '${lib[1]}'"
+                            sh "make IMAGE=${lib[1]} BUILD_TYPE=Debug ${lib[0]}"
+
+                            echo "Building Release library '${lib[0]}' using image '${lib[1]}'"
+                            sh "make IMAGE=${lib[1]} BUILD_TYPE=Release ${lib[0]}"
                         }
                     }
                 }
