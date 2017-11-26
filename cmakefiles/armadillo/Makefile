@@ -1,17 +1,17 @@
 # Simple makefile for building and packaging project Yaml cpp
 
-library				= armadillo
-version				= 3.4.3
-package_name	= $(library)-$(version)
+library       = armadillo
+version       = 3.4.3
+package_name  = $(library)-$(version)
 
-build_type		= Debug
-build_dir 		= $(CURDIR)/build
-package_dir		= $(CURDIR)/packages/$(library)_$(version)_$(build_type)
-cmake					= cmake
-clear					= false
+build_type    = Debug
+build_dir     = $(CURDIR)/build
+package_dir   = $(CURDIR)/packages/$(library)_$(version)_$(build_type)
+cmake         = cmake
+clear         = false
 
-install_prefix	= /usr/local
-prefix 					= $(install_prefix)/$(package_name)
+install_prefix = /usr/local
+prefix         = $(install_prefix)/$(package_name)
 
 # use petsc lapack and blas instead of system's
 USE_PETSC = Off

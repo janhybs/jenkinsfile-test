@@ -1,17 +1,17 @@
 # Simple makefile for building and packaging project
 
-library				= mpich
-version				= 3.2.0
-package_name	= $(library)-$(version)
+library       = mpich
+version       = 3.2.0
+package_name  = $(library)-$(version)
 
-build_type		= Debug
-build_dir 		= $(CURDIR)/build
-package_dir		= $(CURDIR)/packages/$(library)_$(version)_$(build_type)
-cmake					= cmake
-clear					= false
+build_type    = Debug
+build_dir     = $(CURDIR)/build
+package_dir   = $(CURDIR)/packages/$(library)_$(version)_$(build_type)
+cmake         = cmake
+clear         = false
 
-install_prefix	= /usr/local
-prefix 					= $(install_prefix)/$(package_name)
+install_prefix = /usr
+prefix         = $(install_prefix)
 
 
 
@@ -46,7 +46,6 @@ package: build
 .PHONY : clean
 clean:
 	rm -rf $(build_dir)
-	rm -rf $(prefix)
 	rm -rf $(package_dir)/$(package_name)*
 
 .PHONE : help
