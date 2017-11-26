@@ -1,8 +1,19 @@
 // git url: 'https://github.com/janhybs/jenkinsfile-test.git
 
+// def libs = [
+//     'mpich': 'flow123d/base-env',
+//     'petsc': 'flow123d/base-env',
+//     'yamlcpp': 'flow123d/base-env',
+//     'armadillo': 'flow123d/base-env',
+//     'bddcml': 'flow123d/base-env',
+// ]
+
 def libs = [
-    'mpich': 'flow123d/base-env',
-    // 'yamlcpp': 'flow123d/base-build'
+    'mpich',
+    'petsc',
+    'yamlcpp',
+    'armadillo',
+    'bddcml',
 ]
 
 // Required due to JENKINS-27421
@@ -21,8 +32,8 @@ pipeline {
             steps {
               dir('cmakefiles') {
                   script {
-                      for (lib in mapToList(libs)) {
-                            sh "make IMAGE=${lib[1]} BUILD_TYPE=Debug ${lib[0]}"
+                      for (lib in libs) {
+                            sh "make IMAGE=flow123d/base-env BUILD_TYPE=Debug ${lib}"
                         }
                     }
                 }
@@ -33,8 +44,8 @@ pipeline {
             steps {
               dir('cmakefiles') {
                   script {
-                      for (lib in mapToList(libs)) {
-                            sh "make IMAGE=${lib[1]} BUILD_TYPE=Release ${lib[0]}"
+                      for (lib in libs) {
+                            sh "make IMAGE=flow123d/base-env BUILD_TYPE=Release ${lib}"
                         }
                     }
                 }
