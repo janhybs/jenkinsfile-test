@@ -65,6 +65,7 @@ include(Install/BDDCML)
 install(
     DIRECTORY ${CMAKE_INSTALL_PREFIX}/
     DESTINATION ./
+    USE_SOURCE_PERMISSIONS
 )
 
 # CPack configuration

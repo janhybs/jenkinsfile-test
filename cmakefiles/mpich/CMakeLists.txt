@@ -43,6 +43,7 @@ ExternalProject_Add(external-lib
 install(
     DIRECTORY ${CMAKE_INSTALL_PREFIX}/
     DESTINATION ./
+    USE_SOURCE_PERMISSIONS
 )
 
 # CPack configuration

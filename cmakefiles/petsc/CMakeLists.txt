@@ -72,6 +72,7 @@ execute_process(COMMAND
 install(
     DIRECTORY ${CMAKE_INSTALL_PREFIX}/
     DESTINATION ./
+    USE_SOURCE_PERMISSIONS
 )
 
 # CPack configuration
