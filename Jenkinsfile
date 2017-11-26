@@ -17,15 +17,23 @@ pipeline {
     agent { node { label 'ci2runner' } }
 
     stages {
-        stage('Build') {
+        stage('Build DEBUG libs') {
             steps {
               dir('cmakefiles') {
                   script {
                       for (lib in mapToList(libs)) {
-                            echo "Building Debug library '${lib[0]}' using image '${lib[1]}'"
                             sh "make IMAGE=${lib[1]} BUILD_TYPE=Debug ${lib[0]}"
+                        }
+                    }
+                }
+            }
+        }
 
-                            echo "Building Release library '${lib[0]}' using image '${lib[1]}'"
+        stage('Build RELEASE libs') {
+            steps {
+              dir('cmakefiles') {
+                  script {
+                      for (lib in mapToList(libs)) {
                             sh "make IMAGE=${lib[1]} BUILD_TYPE=Release ${lib[0]}"
                         }
                     }
