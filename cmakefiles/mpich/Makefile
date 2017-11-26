@@ -10,8 +10,8 @@ package_dir   = $(CURDIR)/packages/$(library)_$(version)_$(build_type)
 cmake         = cmake
 clear         = false
 
-install_prefix = /usr
-prefix         = $(install_prefix)
+install_prefix = /usr/local
+prefix         = $(install_prefix)/$(package_name)
 
 
 
