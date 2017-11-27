@@ -5,7 +5,7 @@ version       = 2.4.0
 package_name  = $(library)-$(version)
 
 build_type    = Debug
-build_dir     = $(CURDIR)/build
+build_dir     = $(CURDIR)/build-$(build_type)
 package_dir   = $(CURDIR)/packages/$(library)_$(version)_$(build_type)
 cmake         = cmake
 clear         = false
@@ -17,7 +17,7 @@ prefix         = $(install_prefix)/$(package_name)
 USE_PETSC = On
 # use petsc lapack and blas instead of system's
 PETSC_DIR  = /usr/local/petsc-3.6.1/
-PETSC_ARCH = 
+PETSC_ARCH =
 
 
 .PHONY : configure

@@ -5,7 +5,7 @@ version       = 3.2.0
 package_name  = $(library)-$(version)
 
 build_type    = Debug
-build_dir     = $(CURDIR)/build
+build_dir     = $(CURDIR)/build-$(build_type)
 package_dir   = $(CURDIR)/packages/$(library)_$(version)_$(build_type)
 cmake         = cmake
 clear         = false
