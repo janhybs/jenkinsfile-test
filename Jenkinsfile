@@ -9,7 +9,7 @@
 // ]
 
 def debug_libs = [
-    // 'mpich',
+    'mpich',
     // 'petsc',
     // 'yamlcpp',
     // 'armadillo',
