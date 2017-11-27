@@ -29,6 +29,11 @@ message(STATUS "------------------------------------------------------")
 
 # --------------------------------------------------------------------
 
+message(STATUS "PATH=$ENV{PATH}")
+message(STATUS "MPI_C_LIBRARIES=${MPI_C_LIBRARIES}")
+message(STATUS "MPI_C_INCLUDE_PATH=${MPI_C_INCLUDE_PATH}")
+find_package(MPI REQUIRED)
+
 
 # if set we use petsc installation
 # otherwise we try to look for system libraries of blas and lapack
@@ -50,10 +55,6 @@ set(PETSC_EXPORT_LIST
   UMFPACK_LIB)
 
 
-message(STATUS "PATH=$ENV{PATH}")
-message(STATUS "MPI_C_LIBRARIES=${MPI_C_LIBRARIES}")
-message(STATUS "MPI_C_INCLUDE_PATH=${MPI_C_INCLUDE_PATH}")
-find_package(MPI REQUIRED)
 find_package(PETSc 3.6.0 REQUIRED)
 
 
