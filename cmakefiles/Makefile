@@ -9,14 +9,14 @@ DEB_NAME=$(notdir $(URL))
 
 .PHONY : publish
 publish:
-	@echo "\n=== Publishing image $(DID) ===\n"
+	@/bin/echo -e "\n=== Publishing image $(DID) ===\n"
 	-docker exec $(DID) chown -R $(shell id -u) /tmp/work
 	docker rm -f $(DID)
 	scp -r $(CURDIR)/$(@)/packages/* builder@ciflow.nti.tul.cz:$(PACKAGE_DIR_REMOTE)/
 
 .PHONY : start-image
 start-image:
-	@echo "\n=== Starting image $(IMAGE) ===\n"
+	@/bin/echo -e "\n=== Starting image $(IMAGE) ===\n"
 	-@docker rm -f $(DID) 2>/dev/null
 	docker run --rm -di --name=$(DID) \
 			--volume=$(CURDIR):/tmp/work \
@@ -24,7 +24,7 @@ start-image:
 
 .PHONY : install-lib
 install-lib:
-	@echo "\n=== Installing $(DEB_NAME) into $(DID) ===\n"
+	@/bin/echo -e "\n=== Installing $(DEB_NAME) into $(DID) ===\n"
 	-docker exec $(DID) wget -qO /tmp/$(DEB_NAME) $(URL)
 	-docker exec $(DID) dpkg -i /tmp/$(DEB_NAME)
 	-docker exec $(DID) rm -rf /tmp/$(DEB_NAME)
