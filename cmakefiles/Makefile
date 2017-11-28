@@ -4,7 +4,6 @@ PACKAGE_DIR_REMOTE=/var/www/html/static/packages
 DID=lib-$(@)
 IMAGE=flow123d/base-env
 
-LIBS_WITH_MPICH := petsc armadillo yamlcpp
 URL=
 DEB_NAME=$(notdir $(URL))
 
@@ -18,7 +17,7 @@ publish:
 .PHONY : start-image
 start-image:
 	@echo "\n=== Starting image $(IMAGE) ===\n"
-	-@docker rm -f $(DID)
+	-@docker rm -f $(DID) 2>/dev/null
 	docker run --rm -di --name=$(DID) \
 			--volume=$(CURDIR):/tmp/work \
 			$(IMAGE)
@@ -33,10 +32,11 @@ install-lib:
 .PHONY : mpich
 mpich:
 	$(MAKE) DID=$(DID) CURDIR=$(CURDIR) IMAGE=$(IMAGE) start-image
+	-docker exec $(DID) make -C /tmp/work/$(@) build_type=$(BUILD_TYPE) package
 	$(MAKE) DID=$(DID) PACKAGE_DIR_REMOTE=$(PACKAGE_DIR_REMOTE) publish
 
-.PHONY : $(LIBS_WITH_MPICH)
-$(LIBS_WITH_MPICH):
+.PHONY : petsc armadillo yamlcpp
+petsc armadillo yamlcpp:
 	$(MAKE) DID=$(DID) CURDIR=$(CURDIR) IMAGE=$(IMAGE) start-image
 	$(MAKE) DID=$(DID) URL=http://ciflow.nti.tul.cz/static/packages/mpich_3.2.0_$(BUILD_TYPE)/mpich-3.2.0.deb install-lib
 	-docker exec $(DID) /bin/bash -c "PATH=/usr/local/mpich-3.2.0/bin:\$$PATH make -C /tmp/work/$(@) build_type=$(BUILD_TYPE) package"
